@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>College Life Crossword Puzzle</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
@@ -128,10 +128,8 @@
             border: 2px solid #333;
             margin: 0 auto;
             width: fit-content;
-            max-width: 100%;
             border-radius: 8px;
             overflow: hidden;
-            justify-self: center;
         }
 
         .cell {
@@ -147,13 +145,10 @@
             cursor: pointer;
             position: relative;
             transition: all 0.2s ease;
-            touch-action: manipulation;
-            -webkit-tap-highlight-color: transparent;
         }
 
-        .cell.inactive {
-            background: transparent;
-            border: none;
+        .cell.black {
+            background: #333;
             cursor: default;
         }
 
@@ -333,32 +328,6 @@
             z-index: 1000;
         }
 
-        /* Tablet Responsive */
-        @media (max-width: 1024px) {
-            .container {
-                padding: 15px;
-            }
-
-            .game-container {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-
-            .cell {
-                width: 40px;
-                height: 40px;
-                font-size: 15px;
-            }
-
-            .cell input {
-                font-size: 15px;
-            }
-
-            .clues-section {
-                order: -1;
-            }
-        }
-
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .container {
@@ -369,22 +338,14 @@
                 font-size: 2rem;
             }
 
-            .header p {
-                font-size: 1rem;
-            }
-
             .game-container {
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
 
-            .puzzle-section, .clues-section {
-                padding: 20px;
-            }
-
             .cell {
-                width: 32px;
-                height: 32px;
+                width: 35px;
+                height: 35px;
                 font-size: 14px;
             }
 
@@ -394,55 +355,26 @@
 
             .controls {
                 justify-content: center;
-                gap: 8px;
             }
 
             .btn {
-                padding: 8px 14px;
+                padding: 8px 16px;
                 font-size: 12px;
-                flex: 1;
-                min-width: 70px;
-                max-width: 120px;
             }
 
             .clues-section {
                 order: -1;
             }
 
-            .congratulations {
-                padding: 30px 20px;
-            }
-
             .congratulations h2 {
                 font-size: 2rem;
             }
-
-            .congratulations p {
-                font-size: 1.1rem;
-            }
         }
 
-        /* Small Mobile */
         @media (max-width: 480px) {
-            .container {
-                padding: 8px;
-            }
-
-            .header h1 {
-                font-size: 1.8rem;
-            }
-
-            .header p {
-                font-size: 0.9rem;
-            }
-
-            .puzzle-section, .clues-section {
-                padding: 15px;
-            }
-
             .cell {
-                width: 26px;
-                height: 26px;
+                width: 28px;
+                height: 28px;
                 font-size: 12px;
             }
 
@@ -451,95 +383,11 @@
             }
 
             .cell-number {
-                font-size: 7px;
-                top: 1px;
-                left: 1px;
+                font-size: 8px;
             }
 
             .crossword-grid {
                 gap: 0;
-            }
-
-            .btn {
-                padding: 6px 10px;
-                font-size: 11px;
-                min-width: 60px;
-                max-width: 100px;
-            }
-
-            .clue-item {
-                padding: 8px;
-                font-size: 14px;
-            }
-
-            .congratulations {
-                padding: 25px 15px;
-            }
-
-            .congratulations h2 {
-                font-size: 1.8rem;
-            }
-
-            .congratulations p {
-                font-size: 1rem;
-            }
-
-            .invitation-link {
-                padding: 12px 25px;
-                font-size: 14px;
-            }
-        }
-
-        /* Extra Small Mobile */
-        @media (max-width: 360px) {
-            .cell {
-                width: 22px;
-                height: 22px;
-                font-size: 11px;
-            }
-
-            .cell input {
-                font-size: 11px;
-            }
-
-            .cell-number {
-                font-size: 6px;
-            }
-
-            .btn {
-                padding: 5px 8px;
-                font-size: 10px;
-                min-width: 50px;
-                max-width: 80px;
-            }
-
-            .controls {
-                gap: 5px;
-            }
-
-            .header h1 {
-                font-size: 1.6rem;
-            }
-
-            .congratulations h2 {
-                font-size: 1.6rem;
-            }
-        }
-
-        /* Large Desktop */
-        @media (min-width: 1200px) {
-            .cell {
-                width: 50px;
-                height: 50px;
-                font-size: 18px;
-            }
-
-            .cell input {
-                font-size: 18px;
-            }
-
-            .cell-number {
-                font-size: 11px;
             }
         }
     </style>
@@ -589,7 +437,7 @@
 
         <div id="congratulations-view" class="congratulations">
             <h2>🎉 Congratulations! You Solved It! 🎉</h2>
-            <p>Your college invitation is ready!</p>
+            <p>Your college invitation is ready! - Your Loving Seniors ❤️</p>
             
             <div class="invitation-preview">
                 <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDE1MCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNTAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiM0Q0FGNTAIIHN0cm9rZS13aWR0aD0iMyIvPgo8dGV4dCB4PSI3NSIgeT0iMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiM0Q0FGNTAIIHRLEHQTYW5jaG9yPSJtaWRkbGUiPklOVklUQVRJT048L3RleHQ+Cjx0ZXh0IHg9Ijc1IiB5PSI2MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSIjMzMzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Db2xsZWdlIEFkbWlzc2lvbjwvdGV4dD4KPHN2ZyB4PSI2MCIgeT0iODAiIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCI+CjxjaXJjbGUgY3g9IjE1IiBjeT0iMTUiIHI9IjEyIiBmaWxsPSIjNENBRjUwIi8+Cjx0ZXh0IHg9IjE1IiB5PSIyMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+8J+OkzwvdGV4dD4KPC9zdmc+Cjx0ZXh0IHg9Ijc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMCIgZmlsbD0iIzY2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Q29uZ3JhdHVsYXRpb25zITwvdGV4dD4KPHR5ZXh0IHg9Ijc1IiB5PSIxNTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSI4IiBmaWxsPSIjNjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Zb3UgaGF2ZSBiZWVuIGFjY2VwdGVkPC90ZXh0Pgo8dGV4dCB4PSI3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iOCIgZmlsbD0iIzY2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+dG8gb3VyIGNvbGxlZ2UhPC90ZXh0Pgo8L3N2Zz4=" 
@@ -598,8 +446,8 @@
                      onerror="this.src=''; this.alt='Invitation image failed to load'; this.style.display='none';">
             </div>
             
-            <a href="submain.html" class="invitation-link" aria-label="View your full college invitation">
-                📜 View Your Invitation
+            <a href="invitation.html" class="invitation-link" aria-label="View your full college invitation">
+                📜 Show Invitation
             </a>
         </div>
     </div>
@@ -621,7 +469,7 @@
                     word: 'PHOTOS',
                     clue: 'Frozen memories that speak without words.',
                     startRow: 2,
-                    startCol: 0,
+                    startCol: 3,
                     direction: 'across',
                     number: 2
                 },
@@ -632,14 +480,6 @@
                     startCol: 3,
                     direction: 'across',
                     number: 3
-                },
-                {
-                    word: 'ATTENDANCE',
-                    clue: 'The first word a lecturer says before teaching.',
-                    startRow: 6,
-                    startCol: 1,
-                    direction: 'across',
-                    number: 4
                 },
                 {
                     word: 'PASS',
@@ -653,9 +493,9 @@
                     word: 'LIBRARY',
                     clue: 'A place full of knowledge, yet people ask for silence here.',
                     startRow: 4,
-                    startCol: 8,
+                    startCol: 11,
                     direction: 'down',
-                    number: 5
+                    number: 4
                 }
             ]
         };
@@ -675,10 +515,10 @@
             const grid = document.getElementById('crossword-grid');
             grid.innerHTML = '';
 
-            // Initialize grid with empty cells
+            // Initialize grid with black cells
             for (let row = 0; row < 11; row++) {
                 for (let col = 0; col < 13; col++) {
-                    crosswordData.grid[row][col] = { letter: '', isActive: false, number: null };
+                    crosswordData.grid[row][col] = { letter: '', isBlack: true, number: null };
                 }
             }
 
@@ -690,7 +530,7 @@
                     
                     crosswordData.grid[row][col] = {
                         letter: wordData.word[i],
-                        isActive: true,
+                        isBlack: false,
                         number: i === 0 ? wordData.number : crosswordData.grid[row][col]?.number || null,
                         userInput: ''
                     };
@@ -705,7 +545,9 @@
                     cell.dataset.row = row;
                     cell.dataset.col = col;
 
-                    if (crosswordData.grid[row][col].isActive) {
+                    if (crosswordData.grid[row][col].isBlack) {
+                        cell.classList.add('black');
+                    } else {
                         const input = document.createElement('input');
                         input.type = 'text';
                         input.maxLength = 1;
@@ -725,8 +567,6 @@
                         }
 
                         cell.addEventListener('click', () => handleCellClick(row, col));
-                    } else {
-                        cell.classList.add('inactive');
                     }
 
                     grid.appendChild(cell);
@@ -1137,5 +977,5 @@
         // Initialize the game when page loads
         document.addEventListener('DOMContentLoaded', initializeCrossword);
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98064d5023059361',t:'MTc1ODA4Nzk3NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98063f8f06e53223',t:'MTc1ODA4NzQxMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
