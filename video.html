@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Original Size Video with RGB Border</title>
+  <style>
+    body {
+      background-color: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .video-container {
+      display: inline-block;
+      position: relative;
+      border: 5px solid;
+      border-image: linear-gradient(45deg, red, green, blue) 1;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+    }
+
+    video {
+      display: block;
+      border-radius: 15px;
+      /* No width or height: shows video at natural size */
+    }
+
+    .controls {
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .controls button, .controls select {
+      background: #222;
+      color: white;
+      border: 1px solid #555;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.3s;
+    }
+
+    .controls button:hover, .controls select:hover {
+      background: #444;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="video-container">
+    <video id="myVideo" controls>
+      <source src="VID-20250918-WA0002.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <div class="controls">
+    <button onclick="playVideo()">▶️ Play</button>
+    <button onclick="pauseVideo()">⏸️ Pause</button>
+    <button onclick="rewindVideo()">⏪ Rewind 10s</button>
+    <button onclick="forwardVideo()">⏩ Forward 10s</button>
+    <select onchange="changeSpeed(this.value)">
+      <option value="1">⏱️ 1x Speed</option>
+      <option value="0.5">0.5x</option>
+      <option value="1.5">1.5x</option>
+      <option value="2">2x</option>
+    </select>
+    <button onclick="downloadVideo()">⬇️ Download</button>
+    <button onclick="toggleFullScreen()">🖥️ Fullscreen</button>
+  </div>
+
+  <script>
+    const video = document.getElementById("myVideo");
+
+    function playVideo() {
+      video.play();
+    }
+
+    function pauseVideo() {
+      video.pause();
+    }
+
+    function rewindVideo() {
+      video.currentTime -= 10;
+    }
+
+    function forwardVideo() {
+      video.currentTime += 10;
+    }
+
+    function changeSpeed(speed) {
+      video.playbackRate = parseFloat(speed);
+    }
+
+    function downloadVideo() {
+      const link = document.createElement('a');
+      link.href = video.querySelector('source').src;
+      link.download = "downloaded-video.mp4";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function toggleFullScreen() {
+      if (video.requestFullscreen) {
+        video.requestFullscreen();
+      } else if (video.webkitRequestFullscreen) {
+        video.webkitRequestFullscreen();
+      } else if (video.msRequestFullscreen) {
+        video.msRequestFullscreen();
+      }
+    }
+  </script>
+
+</body>
+</html>
